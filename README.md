@@ -1,3 +1,121 @@
+# 23/08/03
+
+
+
+###### 부분집합 생성하기
+
+- 각 원소가 부분집합에 포함되었는지를 loop를 이용하여 확인하고 부분집합을 생성하는 방법
+
+- ```python
+  bit = [0, 0, 0, 0]
+  for i in range(2):
+      bit[0] = i
+      for j in range(2):
+          bit[1] = j
+          for k in range(2):
+              bit[2] = k
+              for l in range(2):
+                  bit[3] = l
+                  print_subset(bit)
+  ```
+
+- **비트 연산자**
+  
+  | &      | 비트 단위로 AND 연산을 한다           |
+  |:------:|:---------------------------:|
+  | **\|** | **비트 단위로 OR 연산을 한다**        |
+  | **<<** | **피연산자의 비트 열을 왼쪽으로 이동시킨다**  |
+  | **>>** | **피연산자의 비트 열을 오른쪽으로 이동시킨다** |
+
+- **<< 연산자**
+  
+  - 1<<n  :  2^n 즉, 원소가 n개일 경우의 모든 부분집합의 수를 의미한다.
+
+- **& 연산자**
+  
+  - i & (1<<j) : i의 j번째 비트가 1인지 아닌지를 검사한다.
+  
+  ```python
+  arr = [3, 6, 7, 1, 5, 4]
+  
+  n = len(arr)
+  
+  for i in range(1<<n):    # 1<<n -> 부분 집합의 개수
+      for j in range(n):    # 원소의 수 만큼 비트 비교
+          if i & (1<<j):    # i의 j번 비트가 1인 경우
+              print(arr[j], end=", ") # j번 원소 출력
+  ```
+
+
+
+##### 인덱스
+
+- 인덱스
+
+- ㄻ
+
+- ㄻㄹ
+  
+  - ㄻㄹ
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### 선택 정렬(Selection Sort)
+
+- 주어진 자료들 중 가장 작은 값의 원소부터 차례대로 선택하여 위치를 교환하는 방식
+  
+  - 앞서 살펴본 셀렉션 알고리즘을 전체 자료에 적용한 것이다
+
+- 정렬 과정
+  
+  - 주어진 리스트 중에서 최소값을 찾는다.
+  
+  - 그 값을 리스트의 맨 앞에 위치한 값과 교환한다.
+  
+  - 맨 처음 위치를 제외한 나머지 리스트를 대상으로 위의 과정을 반복한다.
+
+- 시간복잡도 : O(N^2)
+
+
+
+
+
+##### 셀렉션 알고리즘(Selection Algorithm)
+
+- 저장되어 있는 자료로부터 K번째로 큰 혹은 작은 원소를 찾는 방법
+  
+  - 최소값, 최대값 혹은 중간값을 찾는 알고리즘을 의미하기도 함
+
+- 선택과정
+  
+  - 셀렉션은 아래와 같은 과정을 통해 이루어진다.
+    
+    - 정렬 알고리즘을 이용하여 자료 정렬
+    
+    - 원하는 순서에 있는 원소 가져오기
+
+- K가 비교적 작을 때 유용하며 O(kn)의 수행시간을 필요로함
+
+
+
+
+
+---
+
+
+
+
+
 # 23/08/02
 
 ##### 2차원 배열
@@ -15,9 +133,7 @@
 ##### 배열 순회
 
 - N X M 배열의 N*M 개의 모든 원소를 빠짐없이 조사하는 방법
-  
-  
-  
+
   **행 우선순회**
 
 - ```python
@@ -25,8 +141,6 @@
       for j in range(m):
           Array[i][j]
   ```
-  
-  
 
 **열 우선순회**
 
@@ -36,8 +150,6 @@
           Array[i][j]
   ```
 
-
-
 **지그재그 순회**
 
 - ```python
@@ -45,8 +157,6 @@
       for j in range(m):
           Array[i][j + (m-1-2*j) * (i%2)]
   ```
-
-
 
 #### 델타를 이용한 2차 배열 탐색
 
@@ -65,38 +175,30 @@
               nj = j + dj[k]
               if 0 <= ni <= N and 0 <= nj <= N #is valid index?
                   Array[ni][nj]
-  
-  
   ```
 
+```python
+#전치행렬
 
+arr = [[1,2,3], [4,5,6], [7,8,9]]
+"""
+123
+456
+789
+"""
 
+for i in range(3):
+    for j in range(3):
+        if i < j:
+            arr[i][j], arr[j][i] = arr[j][i], arr[i][j]
 
-
-###### 전치행렬
-
-- ```python
-  arr = [[1,2,3], [4,5,6], [7,8,9]]
-  """
-  123
-  456
-  789
-  """
-  
-  for i in range(3):
-      for j in range(3):
-          if i < j:
-              arr[i][j], arr[j][i] = arr[j][i], arr[i][j]
-  
-  print(arr) # [[1,4,7], [2,5,8], [3,6,9]
-  """
-  147
-  258
-  369
-  """
-  ```
-
-
+print(arr) # [[1,4,7], [2,5,8], [3,6,9]
+"""
+147
+258
+369
+"""
+```
 
 ##### 검색(Search)
 
@@ -113,8 +215,6 @@
   - 이진 검색(Binary Search)
   
   - 해쉬 (Hash)
-
-
 
 **순차 검색(Sequential Search)**
 
@@ -176,7 +276,6 @@
           return i
       else:
           return -1
-  
   ```
 
  
@@ -192,8 +291,6 @@
   - 목표 값이 중앙값보다 작으면 자료의 왼쪽 반에 대해서 새로 검색 수행, 크다면 자료의 오른쪽 반에 대해서 새로 검색을 수행
   
   - 찾고자 하는 값을 찾을 때 까지 위 과정을 반복
-    
-     
 
 - 구현
   
@@ -214,31 +311,23 @@
           else:
               start = middle + 1
       return false                # search fail
-  
-  
-  
   ```
 
-- ```python
-  def binsearch2(a, low, high, key):
-      if low > high: # search fail
-          return false
-      else:
-          middle = (low + high) //2
-          if key == a[middle]:        # search !
-              return true
-          elif key < a[middle]:
-              return binsearch2(a, low, middle-1, key)
-          elif key > a[middle]:
-              return binsearch2(a, middle+1, high, key)
-  
-  ```
+```python
+def binsearch2(a, low, high, key):
+    if low > high: # search fail
+        return false
+    else:
+        middle = (low + high) //2
+        if key == a[middle]:        # search !
+            return true
+        elif key < a[middle]:
+            return binsearch2(a, low, middle-1, key)
+        elif key > a[middle]:
+            return binsearch2(a, middle+1, high, key)
+```
 
 ---
-
-
-
-
 
 # 23/08/01
 
