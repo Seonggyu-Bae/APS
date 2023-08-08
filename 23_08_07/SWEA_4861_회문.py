@@ -1,42 +1,24 @@
+def is_palindrome(my_arr):
+    for i in range(N):
+        for j in range(N - M + 1):
+            if my_arr[i][j:j + M] == my_arr[i][j:j + M][::-1]:
+                print(f'#{tc} {my_arr[i][j:j + M]}')
+                return
+
+    for k in range(N - M + 1):
+        for l in range(N):
+            col_list = []
+            for m in range(M):
+                col_list.append(my_arr[k + m][l])
+            if col_list == col_list[::-1]:
+                print(f'#{tc}', ''.join(col_list))
+                return
+    return False
+
+
 T = int(input())
-
-for tc in range(1,T+1):
+for tc in range(1, T + 1):
     N, M = map(int, input().split())
-
     word_line = [input() for _ in range(N)]
-    count = 0
-    ans = []
-    ans1 = ''
-    for i in range(N):
-            for k in range(N-M+1):
-                for l in range(M//2):
-                    if word_line[i][k+l] != word_line[i][N-k-l-1]:
-                        count = 0
-                        ans = []
-                        continue
-                    else:
-                        count += 1
-                        ans.append(word_line[i][k+l])
-                        if count == M//2:
-                            ans1 + str(ans)
-                            ans.append(ans[-1::-1])
-                            print(ans1)
-                            break
 
-    for i in range(N):
-        for k in range(N - M + 1):
-            for l in range(M//2):
-                if word_line[k + l][i] != word_line[N - k - l-1][i]:
-                    ans = []
-                    count = 0
-                    continue
-                else:
-                    count += 1
-                    ans.append(word_line[i][k + l])
-                    if count == M//2:
-                        ans.append(ans[-1::])
-                        print(ans)
-                        break
-
-    ans.append(ans[-1::])
-    print(''.join(str(ans)))
+    is_palindrome(word_line)
