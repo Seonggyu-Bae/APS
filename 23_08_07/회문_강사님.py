@@ -11,6 +11,8 @@ def find_palindrome():
                 result = []
                 for k in range(j, j + M):
                     result.append(data[i][k])
+                    print(result)
+                print(result)
                 return ''.join(result)
 
     for i in range(N):
