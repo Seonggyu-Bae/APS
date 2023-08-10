@@ -1,3 +1,98 @@
+# 23/08/10
+
+
+
+#### DP(Dynamic Programming)
+
+- 동적 계획(Dynamic Programming) 알고리즘은 그리디 알고리즘과 같이 **최적화 문제**를 해결하는 알고리즘이다.
+
+- 동적 계획 알고리즘은 먼저 입력 크기가 작은 부분 문제들을 모두 해결한 후에 그 해들을 이용하여 보다 큰 크기의 부분 문제들을 해결하여, 최종적으로 원래 주어진 입력의 문제를 해결하는 알고리즘이다.
+
+피보나치 수 DP 적용 알고리즘
+
+- ```python
+  def fibo2(n):
+      f = [0] * (n+1)
+      f[0] = 1
+      f[1] = 2
+      for i in range(2, n+1):
+          f[i] = f[i-1] + f[i-2]
+  
+      return f[n]
+  ```
+
+
+
+- memoization을 재귀적 구조에 사용하는 것보다 반복적 구조로 DP를 구현한 것이 성능 면에서 보다 효율적이다.
+
+- 재귀적 구조는 내부에 시스템 호출 스택을 사용하는 오버헤드가 발생하기 때문이다.
+
+
+
+#### DFS(Depth First Search, 깊이 우선 탐색)
+
+- 비선형구조인 그래프 구조는 그래프로 표현된 모든 자료를 빠짐없이 검색하는 것이 중요함.
+
+- 두가지 방법
+  
+  - 깊이 우선 탐색(Depth First Search, DFS)
+  
+  - 너비 우선 탐색(Breadth First Search, BFS)
+
+##### DFS란?
+
+- 시작 정점의 한 방향으로 갈 수 있는 경로가 있는 곳까지 깊이 탐색해 가다가 더이상 갈 곳이 없게 되면, 가장 마지막에 만났던 갈림길 간선이 있는 정점으로 되돌아와서 다른 방향의 정점으로 탐색을 계속 반복하여 결국 모든 정점을 방문하는 순회방법
+
+- 가장 마지막에 만났던 갈림길의 정점으로 되돌아가서 다시 깊이 우선 탐색을 반복해야 하므로 후입선출 구조의 스택 사용
+
+##### DFS 알고리즘
+
+1. 시작 정점 v를 결정하여 방문한다.
+
+2. 정점 v에 인접한 정점 중에서
+   
+   1. 방문하지 않은 정점 w가 있으면, 정점 v를 스택에 push하고 정점 w를 방문한다. 그리고 w를 v로 하여 다시 2. 를 반복한다.
+   
+   2. 방문하지 않은 정점이 없으면, 탐색을 방향을 바꾸기 위해서 스택을 pop하여 받은 가장 마지막 방문 정점을 v로하여 다시 2.를 반복한다.
+
+3. 스택이 공백이 될 때까지 2. 를 반복한다.
+
+
+
+```python
+visited[], stack[] 초기화
+
+DFS(v)
+    시작점 v 방문;
+    while{
+        if(v의 인접 정점 중 방문 안 한 정점 w가 있으면)
+            push(v)
+            v <- w; (w에 방문)
+            visited[w] <- true;
+        else
+            if(스택이 비어 있지 않으면)
+                v <- pop(stack);
+            else
+                break
+    }
+end DFS()
+```
+
+
+
+#### DFS 예
+
+- 초기상태 : 배열 visited(정점의 개수만큼) 를 False로 초기화하고, 공백 스택을 생성
+1.  첫번째 정점을 시작으로 깊이 우선 탐색을 시작 (visited[0]을 True로)
+
+2. 
+
+
+
+
+
+---
+
 # 23/08/09
 
 #### 스택(Stack)
@@ -15,8 +110,6 @@
 - 마지막에 삽입한 자료를 가장 먼저 꺼낸다. **후입선출(LIFO : Last-In-First-Out)** 이라고 부른다.
   
   - 예를 들어 스택에 1, 2, 3순으로 자료를 삽입한 후 꺼내면 3, 2, 1 순으로 꺼낼 수 있다.
-
-
 
 #### 스택을 프로그램에서 구현하기 위해서 필요한 자료구조와 연산
 
@@ -38,8 +131,6 @@
   
   - 스택의 top에 있는 item(원소)를 반환하는 연산. peek
 
-
-
 #### 스택의 push 알고리즘
 
 - append 메소드를 통해 리스트의 마지막에 데이터를 삽입
@@ -49,69 +140,54 @@
       s.append(item)
   
   ################################
-  
-  
   def push(item, size):
-      global top
-      top += 1
-      if top==size:
-          print('overflow!')
-      else:
-          stack[top] = item
-  size = 10
-  stack [0] * size
-  top = -1
+   global top
+   top += 1
+   if top==size:
+   print('overflow!')
+   else:
+   stack[top] = item
+   size = 10
+   stack [0] * size
+   top = -1
   
   push(10, size)
-  top += 1
-  stack[top] = 20
+   top += 1
+   stack[top] = 20
   ```
-
-
 
 #### 스택의 pop 알고리즘
 
 ```python
 def pop():
-    if len(s) == 0:
-        #underflow
-        return
-    else:
-        return s.pop()
+  if len(s) == 0:
+      #underflow
+      return
+  else:
+      return s.pop()
 
 ######################################
-#######참
 def pop():
-    global top
-    if top == -1 : 
-        print('underflow')
-        return 0
-    else:
-        top -= 1
-        return stack[top+1]
+  global top
+  if top == -1 : 
+      print('underflow')
+      return 0
+  else:
+      top -= 1
+      return stack[top+1]
 
 print(pop())
 
 if top > -1:
-    top -= 1
-    print(stack[top+1])
-
-
+  top -= 1
+  print(stack[top+1])
 ```
-
-
-
-
 
 #### 스택 구현 고려 사항
 
 - 1차원 배열을 사용하여 구현할 경우 구현이 용이하다는 장점이 있지만 스택의 크기를 변경하기가 어렵다는 단점이 있다.
 
 - 이를 해결하기 위한 방법으로 저장소를 동적으로 할당하여 스택을 구현하는 방법이 있다. 동적 연결리스트를 이용하여 구현하는 방법을 의미한다. 구현이 복잡하다는 단점이 있지만 메모리를 효율적으로 사용한다는 장점을 가진다.
-
-
-
-
 
 #### 스택의 응용1 : 괄호검사
 
@@ -131,8 +207,6 @@ if top > -1:
   
   - 마지막 괄호까지를 조사한  후에도 스택에 괄호가 남아 있으면 조건 1에 위배된다.
 
-
-
 #### 스택의 응용2 : function call
 
 - 프로그램에서의 함수 호출과 복귀에 따른 수행 순서를 관리
@@ -144,10 +218,6 @@ if top > -1:
   - 함수의 실행이 끝나면 시스템 스택의 top 원소(stack frame)을 삭제(pop)하면서 프레임에 저장되어 있던 복귀주소를 확인하고 복귀
   
   - 함수 호출과 복귀에 따라 이 과정을 반복하여 전체 프로그램 수행이 종료되면 시스템 스택은 공백 스택이 된다.
-
-
-
-
 
 #### 재귀호출
 
@@ -177,8 +247,6 @@ if top > -1:
           return fibo(n-1) + fibo(n-2)
   ```
 
-
-
 #### Memoization
 
 - 앞의 예에서 피보나치 수를 구하는 함수를 재귀함수로 구현한 알고리즘은 문제점이 있다.
@@ -195,16 +263,17 @@ if top > -1:
       if n >= 2 and memo[n] == 0:
           memo[n] = (fibo1(n-1) + fibo1(n-2))
       return memo[n]
-  
-  
+  ```
+
   memo = [0] * (n+1)
   memo[0] = 0
   memo[1] = 1
-  ```
-  
-  - memo를 위한 배열을 할당하고, 모두 0으로 초기화 한다
-  
-  - memo[0]을 0으로 memo[1]는 1로 초기화 한다
+
+
+
+
+
+
 
 
 
@@ -213,60 +282,75 @@ if top > -1:
 ---
 
 
+---
 
 # 23/08/08
 
+
+
 #### 문자열
 
-##### 패턴매칭
+
+
+
+#### 패턴 매칭
 
 - 패턴 매칭에 사용되는 알고리즘
   
   - 고지식한 패턴 검색 알고리즘 (Brute Force)
+    
   
   - 카프-라빈 알고리즘
-  
-  - KMP알고리즘
-  
-  - 보이어-무어 알고리즘
-
-###### 고지식한 알고리즘(Brute Force)
-
-- 본문 문자열을 처음부터 끝까지 차례대로 순회하면서 패턴 내의 문자들을 일일이 비교하는 방식으로 동작
-
-```python
-p = 'is'
-t = 'this is a book'
-M = len(p)
-N = len(t)
-
-# 같은 패턴을 찾았다면 그 패턴의 첫번째 인덱스를 반환함
-# 아래 경우는 2를 반환함
-# this is a book
-# 0123
-def BruteForce(p,t):
-    i = 0
-    j = 0
-    while j < M and i <N:
-        if t[i] != p[j]:
-            i = i-j
-            j = -1
-        i = i + 1
-        j = j + 1
-    if j == M:
-        return i-M
-    else:
-        return -1
-
-
-print(BruteForce(p,t))
-```
+    
+    
+    
+    KMP알고리즘
+    
+    
+    - 보이어-무어 알고리즘
+      
+      ###### 고지식한 알고리즘(Brute Force)
+      
+      - 본문 문자열을 처음부터 끝까지 차례대로 순회하면서 패턴 내의 문자들을 일일이 비교하는 방식으로 동작
+      
+      ```python
+      p = 'is'
+      t = 'this is a book'
+      M = len(p)
+      N = len(t)
+      
+      # 같은 패턴을 찾았다면 그 패턴의 첫**번째 인덱스를 반환함
+      # 아래 경우는 2를 반환함**
+      # this is a book
+      # 0123
+      def BruteForce(p,t):
+        i = 0
+        j = 0
+        while j < M and i <N:
+            if t[i] != p[j]:
+                i = i-j
+                j = -1
+            i = i + 1
+            j = j + 1
+        if j == M:
+            return i-M
+        else:
+            return -1
+      
+      
+      print(BruteForce(p,t))
 
 - 시간복잡도
   
   - 최악의 경우 시간 복잡도는 텍스트의 모든 위치에서 패턴을 비교해야 하므로 O(MN)이 됨
   
   - 길이가 10000인 문자열에서 길이 80인 패턴을 찾는다고 할 때, 최악의 경우 약 10000 * 80  = 800,000 번의 비교가 일어남
+
+
+
+
+
+
 
 ##### KMP 알고리즘
 
@@ -278,7 +362,9 @@ print(BruteForce(p,t))
 
 - 시간복잡도 : O(M+N)
 
-@
+
+
+
 
 ##### 보이어-무어 알고리즘
 
@@ -295,6 +381,12 @@ print(BruteForce(p,t))
 - 최악의 경우 수행시간 : O(MN)
 
 - 입력에 따라 다르지만 일반적으로 O(N)보다 시간이 덜 든다
+
+
+
+
+
+
 
 ---
 
