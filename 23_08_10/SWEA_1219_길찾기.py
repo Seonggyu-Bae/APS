@@ -5,6 +5,8 @@ def dfs1(start, adj1, adj2, visited):
     while stack:
         top = stack[-1]
         visited[top] = 1
+        if top == 99:
+            return 1
 
         for i in range(200):
             if adj1[top] != 0 and not visited[adj1[top]]:
