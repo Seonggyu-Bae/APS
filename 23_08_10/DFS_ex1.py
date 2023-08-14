@@ -35,7 +35,7 @@ def my_dfs(start, adj):
     # 시작지점 경로추가 및 방문표시
     stack = [start]
     visited[start] = 1
-
+    print(start, end=' ')
     # 현재 있는 위치에서 길찾기
     # 현재 위치에서 갈 수 있는 길이 없으면? -> 되돌아가기
     # 경로상에 정점이 남아있으면 -> 계속해서 탐색
