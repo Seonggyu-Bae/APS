@@ -30,7 +30,7 @@ T = int(input())
 for tc in range(1, T + 1):
     N = int(input())
 
-    map_info = [list(map(int, input())) for _ in range(N)]
+    map_info = [list(map(int, input().strip())) for _ in range(N)]
     print(map_info)
     start = [0,0]
 
