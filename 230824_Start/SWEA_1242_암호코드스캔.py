@@ -44,12 +44,14 @@ def passcode_solve(data):
     # 열은 뒤에서 부터 읽으면서 코드 찾기
     code = []
     for i in range(N):
-        for j in range(M - 1, -1, -1):  #
-            if data[i][j] != 0:  # 암호코드의 마지막 찾음
+        j = M
+        while True:
+            j-=1
+            if data[i][j] != '0':  # 암호코드의 마지막 찾음
                 hex_code = []
                 while True:
                     j -= 1
-                    if data[i][j] == 0:
+                    if data[i][j] == '0':
                         break
                     else:
                         hex_code.insert(0, data[i][j])
