@@ -1,6 +1,6 @@
-#import sys
+import sys
 
-#sys.stdin = open('sample_input (1).txt','r')
+sys.stdin = open('sample_input (1).txt','r')
 
 code_dic = {
     (3, 2, 1, 1): 0,
@@ -43,8 +43,8 @@ for tc in range(1, T + 1):
     N, M = map(int, input().split())
 
     passcode = [list(input().rstrip()) for _ in range(N)]
-    is_end = False
     codes = []
+
     for i in range(N):
         j = -1
         while j < M - 1:
@@ -57,6 +57,7 @@ for tc in range(1, T + 1):
                 codes.append(code)
 
     delete_overlap = list(set(codes))
+    print(delete_overlap)
     bin_codes = []
     for i in range(len(delete_overlap)):
         bin_codes.append(hex_to_bin(delete_overlap[i]))
@@ -65,9 +66,10 @@ for tc in range(1, T + 1):
 
     for i in range(len(bin_codes)):
         multiple = len(bin_codes[i]) // 56
+
         if multiple < 1:
             continue
-
+        print(bin_codes[i], multiple)
         for j in range(len(bin_codes[i]) - 1, -1, -1):
             if bin_codes[i][j] == '1':
                 decimal_code = []
