@@ -6,6 +6,7 @@ graph = [
     [0, 1, 0, 1, 0]
 ]
 
+
 def bfs(start):
     visited = [0] * len(graph)
 
@@ -35,5 +36,3 @@ def bfs(start):
 
 
 bfs(0)
-
-

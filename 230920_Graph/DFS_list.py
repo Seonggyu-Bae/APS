@@ -5,12 +5,14 @@
 # 각 노드마다 갈 수 있는 지점의 개수가 다름
 # 즉, range 사용 할 때 index 조심
 graph = [
-    [1,3],
-    [0,2,3,4],
+    [1, 3],
+    [0, 2, 3, 4],
     [1],
-    [0,1,4],
-    [1,3]
+    [0, 1, 4],
+    [1, 3]
 ]
+
+
 #  파이썬은 딕셔너리로도 구현할 수 있다.
 # graph_dict = {
 #     '0' : [1, 3],
@@ -50,20 +52,15 @@ def dfs_stack(start):
 print("dfs stack = ", end='')
 print(*dfs_stack(0))
 
-
-
-
-
-
 visited = [0] * len(graph)
 path = []  # 방문 순서 기록
+
 
 def dfs_recur(now):
     visited[now] = 1  # 현재 지점 방문표시
     path.append(now)
     # 인접한 노드들 방문
     for next_idx in range(len(graph[now])):
-
 
         next_vertex = graph[now][next_idx]
 
