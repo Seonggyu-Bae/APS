@@ -4,20 +4,19 @@ from collections import deque
 
 
 def solve(start, end):
-    visited = [0] * (N+1)
+    visited = [0] * (N + 1)
 
     q = deque()
     q.append(start)
     while q:
         s = q.popleft()
         if s == end:
-            break
-        for go in range(N+1):
-            if lineinfo[s][go]:
+            continue
+        for go in lineinfo[s]:
+            if not visited[go]:
                 q.append(go)
-                if go != start:
-                    visited[go] = 1
-            elif go == N:
+                visited[go] = 1
+            if not lineinfo[go] and go != end:
                 visited[go] = 0
 
     my_set = set()
@@ -29,15 +28,15 @@ def solve(start, end):
 
 N, M = map(int, input().split())  # N: 정점, M: 간선의 개수
 
-lineinfo = [[0] * (N + 1) for _ in range(N + 1)]
+# lineinfo = [[0] * (N + 1) for _ in range(N + 1)]
+lineinfo = [[] for _ in range(N+1)]
 for _ in range(M):
     x, y = map(int, input().split())
-    lineinfo[x][y] = 1
+    lineinfo[x].append(y)
 
 S, T = map(int, input().split())
 
 
 going = solve(S, T)
 back = solve(T, S)
-
 print(len(going.intersection(back)))
